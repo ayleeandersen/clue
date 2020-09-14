@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import Header from './components/Header';
+import EnterCode from './pages/EnterCode';
+import Notebook from './pages/Notebook';
+
 import './App.css';
 
 function App() {
+  const [tab, setTab] = useState('enterCode');
+
+  const clickTab = id => {
+    setTab(id)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header active={tab} clickTab={clickTab} />
+      {tab === 'enterCode' && <EnterCode />}
+      {tab === 'notebook' && <Notebook />}
     </div>
   );
 }
