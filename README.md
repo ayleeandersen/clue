@@ -1,3 +1,7 @@
+## Aylee's Notes for Deployments
+
+Push up the results from `npm run build` to the root directory of the `gh-pages` branch. Once that's done, go through and prefix each path with a period before the slash (except for the end where it says l.p="/"). Push the changes up.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
