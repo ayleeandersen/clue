@@ -1,6 +1,6 @@
 ## Aylee's Notes for Deployments
 
-Push up the results from `npm run build` to the root directory of the `gh-pages` branch. Once that's done, go through and prefix each path with a period before the slash (except for the end where it says l.p="/"). In the `static/js/main.<hash>.chunk.js` file, prefix each path with a period before the slash. Push the changes up.
+Push up the results from `npm run build` to the root directory of the `gh-pages` branch. Once that's done, go through and prefix each path with a period before the slash (except for the end where it says l.p="/"). In the `static/js/main.<hash>.chunk.js` file, prefix each path with `"."` before `a.p` (`"."+a.p+"static/media/logo.366cf5f1.png"`). Push the changes up.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
