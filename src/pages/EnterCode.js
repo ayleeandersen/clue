@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactCodeInput from 'react-code-input';
 
-import { CODES, CLUES } from '../utils/constants';
+import ClueCard from '../components/ClueCard';
+
+import { FREE_CODE, CODES, CLUES } from '../utils/constants';
 
 class EnterCode extends React.Component {
   constructor(props) {
@@ -14,6 +16,10 @@ class EnterCode extends React.Component {
     valid: true,
     clues: null,
   };
+
+  componentWillMount() {
+    this.addToLocalStorage(CLUES[FREE_CODE]);
+  }
 
   clearInput = () => {
     if (this.inputRef.current.textInput[0]) {
@@ -28,7 +34,7 @@ class EnterCode extends React.Component {
     const existing = JSON.parse(localStorage.getItem('discoveredClues')) || [];
     const alreadyExisting = existing.filter(c => c.person === clue.person).length;
     if (!alreadyExisting) {
-      existing.push(clue)
+      existing.unshift(clue)
     }
     localStorage.setItem('discoveredClues', JSON.stringify(existing));
   }
@@ -75,21 +81,7 @@ class EnterCode extends React.Component {
           </>
         )}
         {clues && (
-          <div className='clue-card'>
-            <h1>Clue</h1>
-            <h3 className='clue-card-row'>
-              <span>Suspect:</span>
-              <span className='clue-card-clue'>{clues.person}</span>
-            </h3>
-            <h3 className='clue-card-row'>
-              <span>Weapon:</span>
-              <span className='clue-card-clue'>{clues.weapon}</span>
-            </h3>
-            <h3 className='clue-card-row'>
-              <span>Location:</span>
-              <span className='clue-card-clue'>{clues.place}</span>
-            </h3>
-          </div>
+          <ClueCard clues={clues} />
         )}
       </div>
     );
