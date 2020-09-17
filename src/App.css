@@ -80,6 +80,8 @@ h1 {
 .submit {
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
+  font-size: 18px;
+  width: 270px;
   display: block;
   margin: 20px auto;
   background-color: #94A0B3;
@@ -148,6 +150,10 @@ h1 {
   border-top: 2px solid #94A0B3;
   padding: 10px;
   font-size: 18px;
+}
+
+.notebook-table .row input:disabled~* {
+  opacity: 1;
 }
 
 .link {

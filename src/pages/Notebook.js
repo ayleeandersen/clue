@@ -4,19 +4,11 @@ import '@djthoms/pretty-checkbox';
 
 import ClueCard from '../components/ClueCard';
 
-import { SUSPECTS, WEAPONS, LOCATIONS, FREE_CLUES } from '../utils/constants';
+import { SUSPECTS, WEAPONS, LOCATIONS } from '../utils/constants';
 
 class Notecard extends React.Component {
   state = {
     showDiscoveredClues: false,
-  };
-
-  componentWillMount() {
-    for (const clue in FREE_CLUES) {
-      if (!this.isExistingNote(FREE_CLUES[clue])) {
-        this.addNoteToLocalStorage(FREE_CLUES[clue]);
-      }
-    }
   };
 
   toggleShowDiscoveredClues = () => {
@@ -26,17 +18,6 @@ class Notecard extends React.Component {
   }
 
   getClues = () => JSON.parse(localStorage.getItem('discoveredClues')) || [];
-
-  addNoteToLocalStorage = note => {
-    const existing = JSON.parse(localStorage.getItem('existingNotes')) || [];
-    const existingIndex = existing.indexOf(note);
-    if (existingIndex === -1) {
-      existing.push(note);
-    } else {
-      existing.splice(existingIndex, 1);
-    }
-    localStorage.setItem('existingNotes', JSON.stringify(existing));
-  };
 
   isExistingNote = note => (JSON.parse(localStorage.getItem('existingNotes')) || []).includes(note);
 
@@ -51,7 +32,7 @@ class Notecard extends React.Component {
             <div className='row' key={suspect}>
               <span className='table-value'>{suspect}</span>
               <Checkbox
-                onChange={() => this.addNoteToLocalStorage(suspect)}
+                disabled
                 defaultChecked={this.isExistingNote(suspect)}
               />
             </div>
@@ -63,7 +44,7 @@ class Notecard extends React.Component {
             <div className='row' key={weapon}>
               <span className='table-value'>{weapon}</span>
               <Checkbox
-                onChange={() => this.addNoteToLocalStorage(weapon)}
+                disabled
                 defaultChecked={this.isExistingNote(weapon)}
               />
             </div>
@@ -75,7 +56,7 @@ class Notecard extends React.Component {
             <div className='row' key={location}>
               <span className='table-value'>{location}</span>
               <Checkbox
-                onChange={() => this.addNoteToLocalStorage(location)}
+                disabled
                 defaultChecked={this.isExistingNote(location)}
               />
             </div>

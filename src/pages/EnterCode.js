@@ -3,7 +3,8 @@ import ReactCodeInput from 'react-code-input';
 
 import ClueCard from '../components/ClueCard';
 
-import { FREE_CODE, CODES, CLUES } from '../utils/constants';
+import { CODES, CLUES } from '../utils/constants';
+import { addToLocalStorage } from '../utils/helpers';
 
 class EnterCode extends React.Component {
   constructor(props) {
@@ -17,10 +18,6 @@ class EnterCode extends React.Component {
     clues: null,
   };
 
-  componentWillMount() {
-    this.addToLocalStorage(CLUES[FREE_CODE]);
-  }
-
   clearInput = () => {
     if (this.inputRef.current.textInput[0]) {
       this.inputRef.current.textInput[0].focus();
@@ -30,22 +27,13 @@ class EnterCode extends React.Component {
     }
   }
 
-  addToLocalStorage = clue => {
-    const existing = JSON.parse(localStorage.getItem('discoveredClues')) || [];
-    const alreadyExisting = existing.filter(c => c.person === clue.person).length;
-    if (!alreadyExisting) {
-      existing.unshift(clue)
-    }
-    localStorage.setItem('discoveredClues', JSON.stringify(existing));
-  }
-
   submit = () => {
     const { code } = this.state;
     const finalCode = code.toLowerCase()
     if (CODES.includes(finalCode)) {
       this.setState({ code: '', clues: CLUES[finalCode] });
       this.clearInput();
-      this.addToLocalStorage(CLUES[finalCode]);
+      addToLocalStorage(CLUES[finalCode]);
     } else {
       this.setState({ valid: false, clues: null });
       this.inputRef.current.textInput[0].focus();
@@ -61,7 +49,7 @@ class EnterCode extends React.Component {
 
     return (
       <div className='body'>
-        <p>Enter a code you found from a puzzle to get your next clues</p>
+        <p>Enter the code you found from a puzzle to get your next clue</p>
         <ReactCodeInput
           ref={this.inputRef}
           fields={5}

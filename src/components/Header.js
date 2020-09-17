@@ -6,7 +6,7 @@ import logo from '../logo.png';
 class Header extends React.Component {
   render() {
     return <div className='header'>
-      <img src={logo} className='logo' />
+      <img src={logo} className='logo' alt='logo' />
       <div className='tabs'>
         {TABS.map(tab => (
           <div

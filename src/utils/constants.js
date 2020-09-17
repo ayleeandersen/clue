@@ -55,6 +55,9 @@ export const CODES = [
   'aaaaa',
   '11111',
   'a1a1a',
+  'bbbbb',
+  'ccccc',
+  'ddddd',
 ];
 
 export const CLUES = {
@@ -78,4 +81,19 @@ export const CLUES = {
     weapon: 'Bow and Arrow',
     place: 'Jerusalem',
   },
-}
+  'bbbbb': {
+    person: 'Amalickiah',
+    weapon: 'Atlatl',
+    place: 'Mount Antipas',
+  },
+  'ccccc': {
+    person: 'Ammoron',
+    weapon: 'Poison',
+    place: 'City of Laman',
+  },
+  'ddddd': {
+    person: 'Giddianhi',
+    weapon: 'Fire',
+    place: 'The Wilderness',
+  },
+};
